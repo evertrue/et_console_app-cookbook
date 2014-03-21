@@ -1,0 +1,60 @@
+# Generated automatically by Chef
+
+<VirtualHost *:<%= @params[:server_port] || node['apache']['listen_ports'].first %>>
+    ServerName <%= @params[:server_name] %>
+    <% if @params[:server_aliases] -%>
+    ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
+    <% end -%>
+    DocumentRoot <%= @params[:docroot] %>
+
+    <Directory "/">
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+
+    <Directory "<%= @params[:docroot] %>">
+        Options <%= [@params[:directory_options] || "FollowSymLinks" ].flatten.join " " %>
+        AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Location "/server-status">
+        SetHandler server-status
+
+        Order deny,allow
+        Deny from all
+        Allow from <%= node['apache']['status_allow_list'] %>
+    </Location>
+
+    ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
+    CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined
+
+    SetEnv ENVIRONMENT "<%= node.chef_environment %>"
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteLog <%= node['apache']['log_dir'] %>/<%= @application_name %>-rewrite.log
+        RewriteLogLevel 5
+
+        <% if @params[:server_name].include? 'console' -%>
+        # Separate redirect from Dashboard to Console to display "update" messaging
+        RewriteCond %{HTTP_HOST} ^<%= node['et_console_app']['server_aliases'].first -%>$
+        RewriteRule (.*)         https://<%= @params[:server_name] %>/login?from_dash=1 [R=301,NC,L]
+        <% end -%>
+
+        # 301 redirect all requests for old Landing Pages to new Landing Pages
+        RewriteRule ^/(network|alumni)/?(.*)$ https://<%= node['et_web_app']['server_name'] -%>/network/$2 [R=301,NC,L]
+
+        # # Canonical host, <%= @params[:server_name] %>
+        RewriteCond %{HTTP_HOST}   !^(localhost|127.0.0.1)
+        RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %>$
+        RewriteRule ^/(.*)         https://<%= @params[:server_name] %>/$1 [R=301,NC,L]
+
+        # Unless a real directory or file exists, rewrite all URLs to index.html
+        RewriteCond %{REQUEST_URI}                      !=/server-status
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+        RewriteRule . /index.html [NC,QSA,L]
+    </IfModule>
+</VirtualHost>
