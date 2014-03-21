@@ -22,6 +22,7 @@ when 'debian'
   include_recipe 'apt'
 end
 
+include_recipe 'et_users::evertrue'
 include_recipe 'apache2'
 
 [node['et_console_app']['deploy_to'], node['et_web_app']['deploy_to']].each do |deploy_to_dir|
