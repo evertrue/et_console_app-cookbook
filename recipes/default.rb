@@ -20,8 +20,10 @@
 case node['platform_family']
 when 'debian'
   include_recipe 'apt'
+  package 'fontconfig'
 end
 
+include_recipe 'node'
 include_recipe 'et_users::evertrue'
 include_recipe 'apache2'
 
