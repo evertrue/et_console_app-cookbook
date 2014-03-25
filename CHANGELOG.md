@@ -2,6 +2,10 @@ et_console_app cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the et_console_app cookbook.
 
+v2.0.1
+------
+- Fix hard-coded setting of listen port for `web_app` resources
+
 v2.0.0
 ------
 - Switch to configure Apache to listen on port 8080 (breaking change)
