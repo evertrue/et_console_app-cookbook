@@ -58,3 +58,15 @@ describe 'Apache Virtual Hosts' do
     end
   end
 end
+
+describe 'Supporting functionality for Console/Web' do
+  describe package('git') do
+    it { should be_installed }
+  end
+
+  %w(node npm bower grunt).each do |bin|
+    describe command("which #{bin}") do
+      its(:stdout) { should include bin }
+    end
+  end
+end
