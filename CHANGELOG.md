@@ -2,6 +2,10 @@ et_console_app cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the et_console_app cookbook.
 
+v1.0.1
+------
+- Fix RewriteRule for cachebusting timestamped assets
+
 v1.0.0
 ------
 - Add installation of Node.js, NPM, Bower, Grunt, Git
