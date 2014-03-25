@@ -50,11 +50,9 @@ web_app 'console' do
   server_name node['et_console_app']['server_name']
   server_aliases node['et_console_app']['server_aliases']
   docroot node['et_console_app']['docroot']
-  server_port 10_443
 end
 
 web_app 'web' do
   server_name node['et_web_app']['server_name']
   docroot node['et_web_app']['docroot']
-  server_port 10_443
 end
