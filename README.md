@@ -12,7 +12,7 @@ The Mobile Web app should be broken out into its own cookbook(s) if that becomes
 
 Key                                    | Type            | Description                                      | Default
 ---                                    | ----            | -----------                                      | -------
-`['apache']['listen_ports']`           | String or Array | Ports Apache listens on                          | `%w(80 10443)`
+`['apache']['listen_ports']`           | String or Array | Ports Apache listens on                          | `%w(8080)`
 `['apache']['contact']`                | String          | Apache server contact                            | `'devops@evertrue.com'`
 `['et_console_app']['deploy_to']`      | String          | Path to Console                                  | `'/var/www/console.evertrue.com'`
 `['et_console_app']['docroot']`        | String          | Docroot for Console                              | `"#{node['et_console_app']['deploy_to']}/current/release"`

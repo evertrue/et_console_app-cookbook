@@ -1,4 +1,4 @@
-set['apache']['listen_ports'] = %w(80 10443)
+set['apache']['listen_ports'] = %w(8080)
 set['apache']['contact'] = 'devops@evertrue.com'
 
 set['et_console_app']['deploy_to'] = '/var/www/console.evertrue.com'

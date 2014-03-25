@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Apache Service' do
-  %w(80 10443).each do |port|
+  %w(8080).each do |port|
     describe port(port) do
       it { should be_listening }
     end
@@ -26,7 +26,7 @@ describe 'Apache Virtual Hosts' do
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
     it { should be_mode '644' }
-    its(:content) { should match(/Listen \*:80\nNameVirtualHost \*:80\nListen \*:10443\nNameVirtualHost \*:10443/) }
+    its(:content) { should match(/Listen \*:8080\nNameVirtualHost \*:8080/) }
   end
 
   describe file("#{apache_dir}/conf.d/h5bp.conf") do
