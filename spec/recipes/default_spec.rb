@@ -21,6 +21,10 @@ describe 'et_console_app::default' do
     end
   end
 
+  it 'installs git' do
+    expect(chef_run).to install_package 'git'
+  end
+
   it 'creates /etc/apache2/conf.d/h5bp.conf' do
     expect(chef_run).to create_cookbook_file_if_missing('/etc/apache2/conf.d/h5bp.conf').with(
       user: 'root',

@@ -23,6 +23,8 @@ when 'debian'
   package 'fontconfig'
 end
 
+package 'git'
+
 include_recipe 'node'
 include_recipe 'et_users::evertrue'
 include_recipe 'apache2'
