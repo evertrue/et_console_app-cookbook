@@ -24,7 +24,7 @@ describe 'et_console_app::default' do
   it 'creates /etc/apache2/conf.d/h5bp.conf' do
     expect(chef_run).to create_cookbook_file_if_missing('/etc/apache2/conf.d/h5bp.conf').with(
       user: 'root',
-      # group: node['apache']['root_group'],
+      group: 'root',
       mode: '0644'
     )
   end
@@ -33,7 +33,7 @@ describe 'et_console_app::default' do
     it "creates directory #{path}" do
       expect(chef_run).to create_directory(path).with(
         user: 'deploy',
-        group: node['apache']['group'],
+        group: 'www-data',
         mode: '2775'
       )
     end
