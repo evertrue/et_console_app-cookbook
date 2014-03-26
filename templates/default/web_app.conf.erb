@@ -46,9 +46,10 @@
         # 301 redirect all requests for old Landing Pages to new Landing Pages
         RewriteRule ^/(network|alumni)/?(.*)$ https://<%= node['et_web_app']['server_name'] -%>/network/$2 [R=301,NC,L]
 
-        # # Canonical host, <%= @params[:server_name] %>
+        # Canonical host, <%= @params[:server_name] %>
         RewriteCond %{HTTP_HOST}   !^(localhost|127.0.0.1)
         RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %>$
+        RewriteCond %{REQUEST_METHOD} !^OPTIONS$
         RewriteRule ^/(.*)         https://<%= @params[:server_name] %>/$1 [R=301,NC,L]
 
         # ------------------------------------------------------------------------------
