@@ -4,6 +4,10 @@ This file is used to list changes made in each version of the et_console_app coo
 
 v2.0.1
 ------
+- Fix OPTIONS requests for better HAProxy health checks
+
+v2.0.1
+------
 - Fix hard-coded setting of listen port for `web_app` resources
 
 v2.0.0
