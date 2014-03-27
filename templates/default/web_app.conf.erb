@@ -35,7 +35,7 @@
     <IfModule mod_rewrite.c>
         RewriteEngine On
         RewriteLog <%= node['apache']['log_dir'] %>/<%= @application_name %>-rewrite.log
-        RewriteLogLevel 5
+        RewriteLogLevel 0
 
         <% if @params[:server_name].include? 'console' -%>
         # Separate redirect from Dashboard to Console to display "update" messaging
