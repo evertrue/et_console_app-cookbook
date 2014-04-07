@@ -2,6 +2,10 @@ et_console_app cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the et_console_app cookbook.
 
+v2.0.3
+------
+- Hack attributes to work with stage-newvpc environment
+
 v2.0.2
 ------
 - Set RewriteLogLevel back to 0 to prevent huge logs from being written
