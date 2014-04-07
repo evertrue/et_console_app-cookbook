@@ -6,7 +6,7 @@ set['et_console_app']['docroot'] = "#{node['et_console_app']['deploy_to']}/curre
 
 domain_prefix = ''
 domain_prefix = "#{node.chef_environment}-" if node.chef_environment != 'prod'
-domain_prefix = 'stage' if node.chef_environment == 'stage-newvpc'
+domain_prefix = 'stage-' if node.chef_environment == 'stage-newvpc'
 
 set['et_console_app']['server_name'] = "#{domain_prefix}console.evertrue.com"
 set['et_console_app']['server_aliases'] = ["#{domain_prefix}dashboard.evertrue.com"]
