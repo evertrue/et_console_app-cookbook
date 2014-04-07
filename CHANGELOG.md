@@ -2,6 +2,10 @@ et_console_app cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the et_console_app cookbook.
 
+v2.0.4
+------
+- Add missing hyphen
+
 v2.0.3
 ------
 - Hack attributes to work with stage-newvpc environment
