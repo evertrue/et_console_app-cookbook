@@ -4,10 +4,14 @@ describe 'et_console_app::default' do
   let(:chef_run) do
     ChefSpec::Runner.new(platform: 'ubuntu', version: '12.04') do |node|
       node.set['apache']['root_group'] = 'root'
-      node.set['et_console_app']['deploy_to'] = '/var/www/console.evertrue.com'
       node.set['apache']['group'] = 'www-data'
       node.set['apache']['dir'] = '/etc/apache2'
     end.converge(described_recipe)
+  end
+
+  before do
+    stub_command('[ -f /usr/local/share/node-version ] && [ "$(git rev-parse HEAD)" = "$(cat /usr/local/share/node-version)" ]')
+      .and_return(true)
   end
 
   %w(
