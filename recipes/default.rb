@@ -29,7 +29,11 @@ include_recipe 'node'
 include_recipe 'et_users::evertrue'
 include_recipe 'apache2'
 
-[node['et_console_app']['deploy_to'], node['et_web_app']['deploy_to']].each do |deploy_to_dir|
+[
+  node['et_console_app']['deploy_to'],
+  node['et_web_app']['deploy_to'],
+  node['et_app_app']['deploy_to']
+].each do |deploy_to_dir|
   directory deploy_to_dir do
     owner 'deploy'
     group node['apache']['group']
@@ -55,4 +59,9 @@ end
 web_app 'web' do
   server_name node['et_web_app']['server_name']
   docroot node['et_web_app']['docroot']
+end
+
+web_app 'app' do
+  server_name node['et_app_app']['server_name']
+  docroot node['et_app_app']['docroot']
 end

@@ -37,7 +37,11 @@ describe 'et_console_app::default' do
     )
   end
 
-  %w(/var/www/console.evertrue.com /var/www/web.evertrue.com).each do |path|
+  %w(
+    /var/www/console.evertrue.com
+    /var/www/web.evertrue.com
+    /var/www/app.evertrue.com
+  ).each do |path|
     it "creates directory #{path}" do
       expect(chef_run).to create_directory(path).with(
         user: 'deploy',

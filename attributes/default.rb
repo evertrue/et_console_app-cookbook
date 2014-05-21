@@ -15,6 +15,11 @@ set['et_web_app']['docroot'] = "#{node['et_web_app']['deploy_to']}/current/relea
 
 set['et_web_app']['server_name'] = "#{domain_prefix}web.evertrue.com"
 
+set['et_app_app']['deploy_to'] = '/var/www/app.evertrue.com'
+set['et_app_app']['docroot'] = "#{node['et_app_app']['deploy_to']}/current/release"
+
+set['et_app_app']['server_name'] = "#{domain_prefix}app.evertrue.com"
+
 # Set Apache modules to enable
 set['apache']['default_modules'] = %w(
   status

@@ -35,7 +35,7 @@ describe 'Apache Virtual Hosts' do
     it { should be_mode '644' }
   end
 
-  %w(console web).each do |app|
+  %w(console web app).each do |app|
     docroot = "/var/www/#{app}.evertrue.com"
 
     describe file(docroot) do
