@@ -2,6 +2,13 @@ et_console_app cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the et_console_app cookbook.
 
+v2.1.0
+------
+- Use our own Berkshelf API server for internal cookbooks
+- Fix ChefSpec tests to have Node install command properly stubbed
+- Add `(stage-)app.evertrue.com` as a vhost
+    + This cookbook is increasingly inaccurately named…
+
 v2.0.4
 ------
 - Add missing hyphen
